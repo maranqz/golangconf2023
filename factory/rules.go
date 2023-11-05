@@ -21,11 +21,11 @@ func factory(m dsl.Matcher) {
 	m.Match("$pkg.$x{}").
 		Where(!m.File().PkgPath.Matches(rootPkg) &&
 			m["pkg"].Object.Is(`PkgName`) &&
-			m["x"].Filter(filter)).
+			m["x"].Filter(factoryFilter)).
 		Report(`Use factory for $pkg.$x`)
 }
 
-func filter(ctx *dsl.VarFilterContext) bool {
+func factoryFilter(ctx *dsl.VarFilterContext) bool {
 	typX := ctx.Type
 
 	return strings.HasPrefix(typX.String(), rootPkg)
