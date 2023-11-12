@@ -1,0 +1,48 @@
+linters-settings:
+  dupl:
+    threshold: 100
+  lll:
+    line-length: 80
+  varnamelen:
+    ignore-names:
+      - v
+      - ok
+  gci:
+    local-prefixes: github.com/maranqz/go-factory-lint
+
+linters:
+  enable-all: true
+  disable:
+    - maligned
+    - deadcode
+    - golint
+    - scopelint
+    - varcheck
+    - structcheck
+    - nosnakecase
+    - exhaustivestruct
+    - ifshort
+    - exhaustruct
+    - depguard
+    - interfacer
+    - thelper
+
+run:
+  skip-dirs:
+    - testdata
+
+issues:
+  exclude-rules:
+    - path: lint_test
+      linters:
+        - varnamelen
+    - linters:
+        - lll
+      source: "^(?: |\t)*// "
+    - linters:
+        - lll
+      source: "[`\"'].*[`\"']"
+    - linters:
+        - godot
+        - lll
+      source: "// ?TODO "
