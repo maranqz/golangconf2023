@@ -1,11 +1,11 @@
 package tags
 
 type sqlx struct {
-	sqlx string `db:"db"` // want `Don't use tags`
+	sqlx string `migration:"migration"` // want `Don't use tags`
 }
 
 type SQLX struct {
-	SQLX string `db:"db"` // want `Don't use tags`
+	SQLX string `migration:"migration"` // want `Don't use tags`
 }
 
 type JSON struct {
@@ -17,11 +17,11 @@ type json struct {
 }
 
 type MultiTags struct {
-	MultiTags int `db:"db" json:"json"` // want `Don't use tags`
+	MultiTags int `migration:"migration" json:"json"` // want `Don't use tags`
 }
 
 type multiTags struct {
-	multiTags int `db:"db" json:"multiTags"` // want `Don't use tags`
+	multiTags int `migration:"migration" json:"multiTags"` // want `Don't use tags`
 }
 
 type WithoutTags struct {

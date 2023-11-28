@@ -1,0 +1,63 @@
+linters-settings:
+  dupl:
+    threshold: 30
+  lll:
+    line-length: 80
+  gocritic:
+    enabled-checks:
+      - ruleguard
+    settings:
+
+      ruleguard:
+        rules: "${configDir}/../../tags/rules.go"
+  revive:
+    rules:
+      - name: unexported-return
+        disabled: true
+      - name: var-naming
+        disabled: true
+  depguard:
+    rules:
+      # Name of a rule.
+      domain:
+        list-mode: lax
+        files:
+          - "**/domain/**/*.go"
+          - "!$test"
+        # List of allowed packages.
+        allow:
+          - "errors"
+          - "context"
+          - "fmt"
+          - "slices"
+          - "time"
+
+          - "ddd/example/app/pkg"
+          - "ddd/example/app/domain"
+  exhaustruct:
+    exclude:
+      - 'ddd/example/app/domain/ad\.Ad$'
+      - 'ddd/example/app/domain/ad\..*Service.*$'
+
+
+linters:
+  disable-all: true
+  enable:
+    - revive
+    - staticcheck
+    - stylecheck
+    # DDD
+    - exhaustive # check using all type values in map and switch
+    - musttag
+    - gocritic
+    - depguard
+    - exhaustruct
+
+issues:
+  exclude:
+    - "ST1003"
+  exclude-rules:
+    - linters:
+        - revive
+      source: "exported: type name will be used as ad.Ad"
+
